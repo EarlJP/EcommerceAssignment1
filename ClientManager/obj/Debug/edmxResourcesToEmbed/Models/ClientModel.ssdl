@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClientsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="addresses">
+    <Key>
+      <PropertyRef Name="address_id" />
+    </Key>
+    <Property Name="address_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="street_address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="province" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="zipcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="country_code" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="contacts">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="info" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="countries">
+    <Key>
+      <PropertyRef Name="country_code" />
+    </Key>
+    <Property Name="country_code" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="country_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="persons">
+    <Key>
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="person_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="profile_pic" Type="nvarchar" MaxLength="1024" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pictures">
+    <Key>
+      <PropertyRef Name="picture_id" />
+    </Key>
+    <Property Name="picture_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+    <Property Name="caption" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="relative_path" Type="nvarchar" MaxLength="1024" Nullable="false" />
+    <Property Name="time_info" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_addresses_countries">
+    <End Role="countries" Type="Self.countries" Multiplicity="1" />
+    <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="country_code" />
+      </Principal>
+      <Dependent Role="addresses">
+        <PropertyRef Name="country_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_addresses_persons">
+    <End Role="persons" Type="Self.persons" Multiplicity="1" />
+    <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="person_id" />
+      </Principal>
+      <Dependent Role="addresses">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contacts_persons">
+    <End Role="persons" Type="Self.persons" Multiplicity="1" />
+    <End Role="contacts" Type="Self.contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="person_id" />
+      </Principal>
+      <Dependent Role="contacts">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pictures_persons">
+    <End Role="persons" Type="Self.persons" Multiplicity="1" />
+    <End Role="pictures" Type="Self.pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="person_id" />
+      </Principal>
+      <Dependent Role="pictures">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClientsModelStoreContainer">
+    <EntitySet Name="addresses" EntityType="Self.addresses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contacts" EntityType="Self.contacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pictures" EntityType="Self.pictures" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_addresses_countries" Association="Self.FK_addresses_countries">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="addresses" EntitySet="addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_addresses_persons" Association="Self.FK_addresses_persons">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="addresses" EntitySet="addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contacts_persons" Association="Self.FK_contacts_persons">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="contacts" EntitySet="contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pictures_persons" Association="Self.FK_pictures_persons">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="pictures" EntitySet="pictures" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

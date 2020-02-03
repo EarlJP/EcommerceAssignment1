@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClientsModelStoreContainer" CdmEntityContainer="ClientsEntities">
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="ClientsModel.address">
+        <MappingFragment StoreEntitySet="addresses">
+          <ScalarProperty Name="address_id" ColumnName="address_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="street_address" ColumnName="street_address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="country_code" ColumnName="country_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contacts">
+      <EntityTypeMapping TypeName="ClientsModel.contact">
+        <MappingFragment StoreEntitySet="contacts">
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="info" ColumnName="info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="ClientsModel.country">
+        <MappingFragment StoreEntitySet="countries">
+          <ScalarProperty Name="country_code" ColumnName="country_code" />
+          <ScalarProperty Name="country_name" ColumnName="country_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persons">
+      <EntityTypeMapping TypeName="ClientsModel.person">
+        <MappingFragment StoreEntitySet="persons">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pictures">
+      <EntityTypeMapping TypeName="ClientsModel.picture">
+        <MappingFragment StoreEntitySet="pictures">
+          <ScalarProperty Name="picture_id" ColumnName="picture_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+          <ScalarProperty Name="relative_path" ColumnName="relative_path" />
+          <ScalarProperty Name="time_info" ColumnName="time_info" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
